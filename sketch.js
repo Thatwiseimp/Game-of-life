@@ -11,6 +11,7 @@ let yrows=10;
 let screen_x = 400;
 let screen_y = 400;
 let x_p,y_p;
+let duh;
 
 function setup() {
 	createCanvas(400,400);
