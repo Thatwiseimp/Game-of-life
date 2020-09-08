@@ -1,8 +1,22 @@
 function makearray(x,y){
   let arr = new Array(x);
-  for (let i = 0; i < arr.length; ++){
+  for (let i = 0; i < arr.length; i++){
 			 arr[i] = new Array(y);
      }
+  return arr
+}
+
+function fill_2d_array(arr){
+	for (let i = 1; i < (grid.length); i++){
+		for (let j = 1; j < grid[0].length; j++){
+
+		}
+	}
+}
+
+
+function flip(lst,x,y){
+
 }
 
 let grid;
@@ -23,11 +37,17 @@ function setup() {
 
 function draw() {
 	background(0,0,270);
-	x_p = 
-	y_p = 
-	for (let i = 0; i < grid.length; i++){
-		for (let j = 0; j < grid[0].length, j++){
-			
+	strokeWeight(10);
+	point(200,200)
+	for (let i = 1; i < (grid.length); i++){
+		for (let j = 1; j < grid[0].length; j++){
+			if (grid[i][j] == 0){
+				stroke('purple');
+			}
+			else{
+				stroke('white');
+			}
+			point(i*x_dis,j*y_dis);
 		}
 	}
 }
