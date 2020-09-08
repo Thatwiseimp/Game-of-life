@@ -15,16 +15,47 @@ function fill_2d_array(arr){
 	return arr
 }
 
+function cell_block(i,j){
+	return [[i-1,j-1],[i,j-1],[i+1,j-1],[i-1,j],[i,j],[i+1,j],[i-1,j+1],[i,j+1],[i+1,j+1]]
+}
+
 // Births: Each dead cell adjacent to exactly three live neighbors will become live in the next generation.
 // Death by isolation: Each live cell with one or fewer live neighbors will die in the next generation.
 // Death by overcrowding: Each live cell with four or more live neighbors will die in the next generation.
 // Survival: Each live cell with either two or three live neighbors will remain alive for the next generation.
-def conway(lst){
+function conway(lst){
+	newlst = makearray(lst.length,lst[0].length)
 	for (let i = 1; i < (grid.length); i++){
 		for (let j = 1; j < grid[0].length; j++){
-			
+			cell = lst[i][j]
+			blocks = cell_block(i,j);
+			neigh = 0;
+			if (i == 0 || j == 0 || i == grid.length-1 || j == grid.length-1){
+				newlst[i][j] = lst[i][j];
+			}
+			else{
+				for (indices of blocks){
+					neigh += lst[indices[0]][indices[1]]
+				}
+				if (neigh == 3 && cell == 0){
+					newlst[i][j] = 1;
+				}
+				else if(neigh <= 1 && cell == 1){
+					newlst[i][j] = 0;
+				}
+				else if(neigh >= 4 && cell == 1){
+					newlst[i][j] = 0;
+				}
+				else if((neigh == 2 || neigh == 3) && cell == 1){
+					newlst[i][j] = lst[i][j];
+				}
+				else{
+					newlst[i][j] = lst[i][j];
+				}
+			}
 		}
 	}
+	return newlst;
 }
 
 
@@ -51,7 +82,10 @@ function setup() {
 function draw() {
 	background(79, 170, 170);
 	strokeWeight(10);
-	point(200,200)
+	
+	grid = conway(grid);
+	console.log(grid);
+	
 	for (let i = 1; i < (grid.length); i++){
 		for (let j = 1; j < grid[0].length; j++){
 			if (grid[i][j] == 0){
