@@ -11,10 +11,7 @@ function fill_2d_array(arr,xm){
 	for (let i = 0; i < (grid.length); i++){
 		for (let j = 0; j < grid[0].length; j++){
 			arr[i][j] = new cell(i,j);
-			if (i == 0 || j == 0 || i == grid.length-1 || j == grid.length-1){
-				arr[i][j].alive = true;
-			}
-			else if (xm == "fresh"){
+			if (xm == "fresh"){
 				arr[i][j].alive = false;
 			}
 			else{
@@ -42,28 +39,23 @@ function conway(lst){
 			blocks = cell_block(i,j);
 			neigh = 0;
 			newlst[i][j] = new cell(i,j);
-			if (i == 0 || j == 0 || i == grid.length-1 || j == grid.length-1){
-				newlst[i][j] = lst[i][j];
+			for (indices of blocks){
+				neigh += lst[(indices[0]+xrows)%xrows][(indices[1]+yrows)%yrows].alive ? 1 : 0;
+			}
+			if (neigh == 3 && thecell.alive == false){
+				newlst[i][j].alive = true;
+			}
+			else if(neigh <= 1 && thecell.alive == true){
+				newlst[i][j].alive = false;
+			}
+			else if(neigh >= 4 && thecell.alive == true){
+				newlst[i][j].alive = false;
+			}
+			else if((neigh == 2 || neigh == 3) && thecell.alive == true){
+				newlst[i][j].alive = lst[i][j].alive;
 			}
 			else{
-				for (indices of blocks){
-					neigh += lst[indices[0]][indices[1]].alive ? 1 : 0;
-				}
-				if (neigh == 3 && thecell.alive == false){
-					newlst[i][j].alive = true;
-				}
-				else if(neigh <= 1 && thecell.alive == true){
-					newlst[i][j].alive = false;
-				}
-				else if(neigh >= 4 && thecell.alive == true){
-					newlst[i][j].alive = false;
-				}
-				else if((neigh == 2 || neigh == 3) && thecell.alive == true){
-					newlst[i][j].alive = lst[i][j].alive;
-				}
-				else{
-					newlst[i][j].alive = lst[i][j].alive;
-				}
+				newlst[i][j].alive = lst[i][j].alive;
 			}
 		}
 	}
