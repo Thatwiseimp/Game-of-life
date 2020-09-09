@@ -6,7 +6,7 @@ function cell(x,y){
 	this.xcen = this.xloc + x_dis/2;
 	this.ycen = this.yloc + y_dis/2;
 	this.alive = false;
-	this.col = go;
+	this.col = lte;
 	
 	this.show = function(){
 		if (this.alive){
