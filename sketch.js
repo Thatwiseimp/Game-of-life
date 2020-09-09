@@ -89,6 +89,7 @@ function updater(){
 
 
 function start_custom(){
+//	modee = "setup";
 	custom_grid = makearray(grid.length,grid[0].length);
 	custom_grid = fill_2d_array(custom_grid,"fresh");
 	
@@ -107,6 +108,13 @@ let count = 0;
 let modee = 'sim';
 
 
+function mousePressed(){
+	for (let i = 0; i < (grid.length); i++){
+		for (let j = 0; j < grid[0].length; j++){
+			grid[i][j].clicked();
+		}
+	}
+}
 
 function setup() {
 	lte = color(0, 220, 250);
@@ -135,7 +143,6 @@ function draw() {
 		updater(grid);
 	}
 	else if (modee == "setup"){
-		start_custom();
 	}
 	else{
 		updater(grid);
