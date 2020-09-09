@@ -7,12 +7,15 @@ function makearray(x,y){
 }
 
 
-function fill_2d_array(arr){
+function fill_2d_array(arr,xm){
 	for (let i = 0; i < (grid.length); i++){
 		for (let j = 0; j < grid[0].length; j++){
 			arr[i][j] = new cell(i,j);
 			if (i == 0 || j == 0 || i == grid.length-1 || j == grid.length-1){
 				arr[i][j].alive = true;
+			}
+			else if (xm == "fresh"){
+				arr[i][j].alive = false;
 			}
 			else{
 			arr[i][j].alive = Boolean(floor(random(2)));
@@ -67,15 +70,29 @@ function conway(lst){
 	return newlst;
 }
 
-
-function flip(lst,x,y){
-
+function resetsketch(){
+	grid = makearray(xrows,yrows);
+	grid = fill_2d_array(grid,"random");
 }
 
-//let te = color(79, 170, 170);
-//let or = color(255,209,127);
-//let go = color(255,215,0);
-//let pin = color(255,51,153);
+function updater(){
+	grid = conway(grid);
+	
+	for (let i = 0; i < (grid.length); i++){
+		for (let j = 0; j < grid[0].length; j++){
+			grid[i][j].show();
+		}
+	}
+}
+
+
+
+
+function start_custom(){
+	custom_grid = makearray(grid.length,grid[0].length);
+	custom_grid = fill_2d_array(custom_grid,"fresh");
+	
+}
 
 let grid;
 let xrows=40;
@@ -87,6 +104,9 @@ let	y_dis = screen_y/yrows;
 let x_p,y_p;
 let fr = 10;
 let count = 0;
+let modee = 'sim';
+
+
 
 function setup() {
 	lte = color(0, 220, 250);
@@ -96,22 +116,28 @@ function setup() {
 	pin = color(255,51,153);
 	
 	createCanvas(screen_x,screen_y);
-	frameRate(fr);
-	grid = makearray(xrows,yrows);
-	console.log(grid);
-	grid = fill_2d_array(grid);
-	console.log(grid);
-}
-
-function draw() {
+	
 	background('red');
 	strokeWeight(5);
 	stroke(lte);
-	grid = conway(grid);
 	
-	for (let i = 0; i < (grid.length); i++){
-		for (let j = 0; j < grid[0].length; j++){
-			grid[i][j].show();
-		}
+	frameRate(fr);
+	resetsketch();
+	var restart_random_button = createButton("restart random sim");
+	restart_random_button.mousePressed(resetsketch);
+	
+	var restart_custom_button = createButton("restart custom sim");
+	restart_custom_button.mousePressed(start_custom);
+}
+
+function draw() {
+	if (modee == "sim"){
+		updater(grid);
+	}
+	else if (modee == "setup"){
+		start_custom();
+	}
+	else{
+		updater(grid);
 	}
 }

@@ -4,15 +4,16 @@ function cell(x,y){
 	this.xloc = this.x * y_dis;
 	this.yloc = this.y * x_dis;
 	this.alive = false;
+	this.col = go;
 	
 	this.show = function(){
 		if (this.alive){
-			stroke(lte);
+			stroke(this.col);
 			fill('black');
 			rect(this.xloc,this.yloc,x_dis,y_dis);
 		}
 		else {
-			stroke(lte)
+			stroke(this.col);
 			fill('white');
 			rect(this.xloc,this.yloc,x_dis,y_dis);
 			
