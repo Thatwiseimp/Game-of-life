@@ -71,8 +71,13 @@ function conway(lst){
 }
 
 function resetsketch(){
+	modee = "sim";
 	grid = makearray(xrows,yrows);
 	grid = fill_2d_array(grid,"random");
+	
+	
+	custom_grid = makearray(grid.length,grid[0].length);
+	custom_grid = fill_2d_array(custom_grid,"fresh");
 }
 
 function updater(){
@@ -86,13 +91,29 @@ function updater(){
 }
 
 
-
+function displayer(lst){
+	for (let i = 0; i < (lst.length); i++){
+		for (let j = 0; j < lst[0].length; j++){
+			lst[i][j].show();
+		}
+	}
+}
 
 function start_custom(){
-//	modee = "setup";
-	custom_grid = makearray(grid.length,grid[0].length);
-	custom_grid = fill_2d_array(custom_grid,"fresh");
+	modee = "setup";
+	displayer(custom_grid);
 	
+}
+
+function play_custom(){
+	if (modee == "setup"){
+		modee = "sim";
+		grid = custom_grid;
+		draw();
+	}
+	else{
+		resetsketch();
+	}
 }
 
 let grid;
@@ -109,12 +130,22 @@ let modee = 'sim';
 
 
 function mousePressed(){
+	if (modee == "sim"){
 	for (let i = 0; i < (grid.length); i++){
 		for (let j = 0; j < grid[0].length; j++){
 			grid[i][j].clicked();
+			}
+		}
+	}
+	else {
+		for (let i = 0; i < (grid.length); i++){
+			for (let j = 0; j < grid[0].length; j++){
+				custom_grid[i][j].clicked();
+			}
 		}
 	}
 }
+
 
 function setup() {
 	lte = color(0, 220, 250);
@@ -136,6 +167,9 @@ function setup() {
 	
 	var restart_custom_button = createButton("restart custom sim");
 	restart_custom_button.mousePressed(start_custom);
+	
+	var play_custom_button = createButton("play custom");
+	play_custom_button.mousePressed(play_custom);
 }
 
 function draw() {
@@ -143,6 +177,7 @@ function draw() {
 		updater(grid);
 	}
 	else if (modee == "setup"){
+		displayer(custom_grid);
 	}
 	else{
 		updater(grid);

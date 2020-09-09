@@ -26,6 +26,7 @@ function cell(x,y){
 		var d = dist(mouseX,mouseY,this.xcen,this.ycen);
 		if (d <= x_dis/2){
 			this.flip();
+			this.show();
 		}
 	}
 	
