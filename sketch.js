@@ -10,6 +10,12 @@ function fill_2d_array(arr){
 	for (let i = 0; i < (grid.length); i++){
 		for (let j = 0; j < grid[0].length; j++){
 			arr[i][j] = floor(random(2));
+			if (i == 0 || j == 0 || i == grid.length-1 || j == grid.length-1){
+				arr[i][j] = 1;
+			}
+			else{
+			arr[i][j] = floor(random(2));
+			}
 		}
 	}
 	return arr
@@ -78,8 +84,9 @@ let duh;
 let fr = 10;
 
 function setup() {
+	lte = color(0, 220, 250);
 	te = color(79, 170, 170);
-	or = color(255,209,127);
+	orange = color(255,209,127);
 	go = color(255,215,0);
 	pin = color(255,51,153);
 	
@@ -94,9 +101,9 @@ function setup() {
 }
 
 function draw() {
-	background(go);
+	background(orange);
 	strokeWeight(5);
-	stroke(go);
+	stroke(orange);
 	grid = conway(grid);
 	
 	for (let i = 0; i < (grid.length); i++){
@@ -110,8 +117,8 @@ function draw() {
 				fill('black')
 			}
 //			point(i*x_dis+20,j*y_dis+20);
-//			rect(i*x_dis,j*y_dis,x_dis,y_dis);
-			circle(i*x_dis,j*y_dis,x_dis);
+			rect(i*x_dis,j*y_dis,x_dis,y_dis);
+//			circle(i*x_dis+10,j*y_dis+10,x_dis);
 		}
 	}
 }
