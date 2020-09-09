@@ -108,6 +108,12 @@ function play_custom(){
 	}
 }
 
+function clear_custom(){
+	custom_grid = makearray(grid.length,grid[0].length);
+	custom_grid = fill_2d_array(custom_grid,"fresh");
+	
+}
+
 let grid;
 let xrows=40;
 let yrows=40;
@@ -157,11 +163,14 @@ function setup() {
 	var restart_random_button = createButton("restart random sim");
 	restart_random_button.mousePressed(resetsketch);
 	
-	var restart_custom_button = createButton("restart custom sim");
+	var restart_custom_button = createButton("restart custom sim (continue with your board)");
 	restart_custom_button.mousePressed(start_custom);
 	
 	var play_custom_button = createButton("play custom");
 	play_custom_button.mousePressed(play_custom);
+	
+	var clear_custom_button = createButton("clear custom board");
+	clear_custom_button.mousePressed(clear_custom);
 }
 
 function draw() {
