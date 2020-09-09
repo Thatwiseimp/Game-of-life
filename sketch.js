@@ -16,7 +16,7 @@ function fill_2d_array(arr){
 }
 
 function cell_block(i,j){
-	return [[i-1,j-1],[i,j-1],[i+1,j-1],[i-1,j],[i,j],[i+1,j],[i-1,j+1],[i,j+1],[i+1,j+1]]
+	return [[i-1,j-1],[i,j-1],[i+1,j-1],[i-1,j],[i+1,j],[i-1,j+1],[i,j+1],[i+1,j+1]]
 }
 
 // Births: Each dead cell adjacent to exactly three live neighbors will become live in the next generation.
@@ -63,6 +63,11 @@ function flip(lst,x,y){
 
 }
 
+//let te = color(79, 170, 170);
+//let or = color(255,209,127);
+//let go = color(255,215,0);
+//let pin = color(255,51,153);
+
 let grid;
 let xrows=40;
 let yrows=40;
@@ -73,6 +78,11 @@ let duh;
 let fr = 10;
 
 function setup() {
+	te = color(79, 170, 170);
+	or = color(255,209,127);
+	go = color(255,215,0);
+	pin = color(255,51,153);
+	
 	createCanvas(screen_x,screen_y);
 	frameRate(fr);
 	x_dis = screen_x/xrows;
@@ -84,9 +94,9 @@ function setup() {
 }
 
 function draw() {
-	background(79, 170, 170);
-	strokeWeight(10);
-	stroke('black');
+	background(go);
+	strokeWeight(5);
+	stroke(go);
 	grid = conway(grid);
 	
 	for (let i = 0; i < (grid.length); i++){
@@ -100,7 +110,8 @@ function draw() {
 				fill('black')
 			}
 //			point(i*x_dis+20,j*y_dis+20);
-			rect(i*x_dis,j*y_dis,x_dis,y_dis);
+//			rect(i*x_dis,j*y_dis,x_dis,y_dis);
+			circle(i*x_dis,j*y_dis,x_dis);
 		}
 	}
 }
