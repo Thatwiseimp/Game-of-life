@@ -7,8 +7,8 @@ function makearray(x,y){
 }
 
 function fill_2d_array(arr){
-	for (let i = 1; i < (grid.length); i++){
-		for (let j = 1; j < grid[0].length; j++){
+	for (let i = 0; i < (grid.length); i++){
+		for (let j = 0; j < grid[0].length; j++){
 			arr[i][j] = floor(random(2));
 		}
 	}
@@ -25,8 +25,8 @@ function cell_block(i,j){
 // Survival: Each live cell with either two or three live neighbors will remain alive for the next generation.
 function conway(lst){
 	newlst = makearray(lst.length,lst[0].length)
-	for (let i = 1; i < (grid.length); i++){
-		for (let j = 1; j < grid[0].length; j++){
+	for (let i = 0; i < (grid.length); i++){
+		for (let j = 0; j < grid[0].length; j++){
 			cell = lst[i][j]
 			blocks = cell_block(i,j);
 			neigh = 0;
@@ -64,37 +64,43 @@ function flip(lst,x,y){
 }
 
 let grid;
-let xrows=10;
-let yrows=10;
-let screen_x = 400;
-let screen_y = 400;
+let xrows=40;
+let yrows=40;
+let screen_x = 800;
+let screen_y = 800;
 let x_p,y_p;
 let duh;
+let fr = 10;
 
 function setup() {
-	createCanvas(400,400);
+	createCanvas(screen_x,screen_y);
+	frameRate(fr);
 	x_dis = screen_x/xrows;
 	y_dis = screen_y/yrows;
 	grid = makearray(xrows,yrows);
+	console.log(grid);
 	grid = fill_2d_array(grid);
+	console.log(grid);
 }
 
 function draw() {
 	background(79, 170, 170);
 	strokeWeight(10);
-	
+	stroke('black');
 	grid = conway(grid);
-	console.log(grid);
 	
-	for (let i = 1; i < (grid.length); i++){
-		for (let j = 1; j < grid[0].length; j++){
+	for (let i = 0; i < (grid.length); i++){
+		for (let j = 0; j < grid[0].length; j++){
 			if (grid[i][j] == 0){
-				stroke('black');
+//				stroke('black');
+				fill('white');
 			}
 			else{
-				stroke('white');
+//				stroke('white');
+				fill('black')
 			}
-			point(i*x_dis,j*y_dis);
+//			point(i*x_dis+20,j*y_dis+20);
+			rect(i*x_dis,j*y_dis,x_dis,y_dis);
 		}
 	}
 }
