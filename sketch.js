@@ -101,9 +101,9 @@ function setup() {
 }
 
 function draw() {
-	background(orange);
+	background(lte);
 	strokeWeight(5);
-	stroke(orange);
+	stroke(lte);
 	grid = conway(grid);
 	
 	for (let i = 0; i < (grid.length); i++){
