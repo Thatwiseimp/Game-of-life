@@ -114,22 +114,18 @@ function clear_custom(){
 	
 }
 
-function initial(ww,wh){
-	screen_x = ww;
-  screen_y = wh;
-	x_dis = 20;
-	y_dis = 20;
-	xrows=Math.ceil(screen_x/x_dis);
-	yrows=Math.ceil(screen_y/y_dis);
-}
-
 let grid;
-
+let xrows=40;
+let yrows=40;
+let screen_x = 800;
+let screen_y = 800;
+let x_dis = screen_x/xrows;
+let	y_dis = screen_y/yrows;
 let x_p,y_p;
 let fr = 10;
 let count = 0;
 let modee = 'sim';
-let canvas;
+
 
 function mousePressed(){
 	if (modee == "sim"){
@@ -156,15 +152,10 @@ function setup() {
 	go = color(255,215,0);
 	dr = color(255,50,40);
 	pin = color(255,150,255);
-	initial(windowWidth,windowHeight);
 	
-	console.log(x_dis,y_dis);
+	createCanvas(screen_x,screen_y);
 	
-	canvas = createCanvas(screen_x,screen_y);
-	canvas.position(0,0); 
-	canvas.style('z-index','-1');
-	
-	background(lte);
+	background('red');
 	strokeWeight(5);
 	stroke(lte);
 	
@@ -172,7 +163,6 @@ function setup() {
 	resetsketch();
 	var restart_random_button = createButton("restart random sim");
 	restart_random_button.mousePressed(resetsketch);
-//	restart_random_button.style('x')
 	
 	var restart_custom_button = createButton("restart custom sim (continue with your board)");
 	restart_custom_button.mousePressed(start_custom);
