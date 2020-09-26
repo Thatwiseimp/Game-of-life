@@ -157,6 +157,8 @@ function setup() {
 	dr = color(255,50,40);
 	pin = color(255,150,255);
 	initial(windowWidth,windowHeight);
+	transparentcol = color(255,255,255);
+	transparentcol.setAlpha(180);
 	
 	console.log(x_dis,y_dis);
 	
@@ -172,7 +174,7 @@ function setup() {
 	resetsketch();
 	var restart_random_button = createButton("restart random sim");
 	restart_random_button.mousePressed(resetsketch);
-//	restart_random_button.style('x')
+//	restart_random_button.position('x')
 	
 	var restart_custom_button = createButton("restart custom sim (continue with your board)");
 	restart_custom_button.mousePressed(start_custom);
@@ -194,4 +196,6 @@ function draw() {
 	else{
 		updater(grid);
 	}
+	fill(transparentcol);
+	rect(0,0,screen_x,screen_y);
 }
