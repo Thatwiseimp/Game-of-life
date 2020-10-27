@@ -66,15 +66,15 @@ function resetsketch(){
 	modee = "sim";
 	grid = makearray(xrows,yrows);
 	grid = fill_2d_array(grid,"random");
-	
-	
+
+
 	custom_grid = makearray(grid.length,grid[0].length);
 	custom_grid = fill_2d_array(custom_grid,"fresh");
 }
 
 function updater(){
 	grid = conway(grid);
-	
+
 	for (let i = 0; i < (grid.length); i++){
 		for (let j = 0; j < grid[0].length; j++){
 			grid[i][j].show();
@@ -94,7 +94,7 @@ function displayer(lst){
 function start_custom(){
 	modee = "setup";
 	displayer(custom_grid);
-	
+
 }
 
 function play_custom(){
@@ -111,7 +111,7 @@ function play_custom(){
 function clear_custom(){
 	custom_grid = makearray(grid.length,grid[0].length);
 	custom_grid = fill_2d_array(custom_grid,"fresh");
-	
+
 }
 
 function initial(ww,wh){
@@ -150,6 +150,7 @@ function mousePressed(){
 
 
 function setup() {
+  whi = color(240,240,255)
 	lte = color(0, 220, 250);
 	te = color(79, 170, 170);
 	orange = color(255,209,127);
@@ -159,29 +160,29 @@ function setup() {
 	initial(windowWidth,windowHeight);
 	transparentcol = color(255,255,255);
 	transparentcol.setAlpha(180);
-	
+
 	console.log(x_dis,y_dis);
-	
+
 	canvas = createCanvas(screen_x,screen_y);
-	canvas.position(0,0); 
+	canvas.position(0,0);
 	canvas.style('z-index','-1');
-	
+
 	background(lte);
 	strokeWeight(5);
 	stroke(lte);
-	
+
 	frameRate(fr);
 	resetsketch();
 	var restart_random_button = createButton("restart random sim");
 	restart_random_button.mousePressed(resetsketch);
 //	restart_random_button.position('x')
-	
+
 	var restart_custom_button = createButton("restart custom sim (continue with your board)");
 	restart_custom_button.mousePressed(start_custom);
-	
+
 	var play_custom_button = createButton("play custom");
 	play_custom_button.mousePressed(play_custom);
-	
+
 	var clear_custom_button = createButton("clear custom board");
 	clear_custom_button.mousePressed(clear_custom);
 }
@@ -196,6 +197,6 @@ function draw() {
 	else{
 		updater(grid);
 	}
-	fill(transparentcol);
-	rect(0,0,screen_x,screen_y);
+	// fill(transparentcol);
+	// rect(0,0,screen_x,screen_y);
 }

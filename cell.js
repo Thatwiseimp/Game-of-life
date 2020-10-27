@@ -7,22 +7,24 @@ function cell(x,y){
 	this.ycen = this.yloc + y_dis/2;
 	this.alive = false;
 	this.col = 'black';
-	this.out = lte;
-	
+	this.out = 'white';
+
 	this.show = function(){
 		if (this.alive){
 			stroke(this.out);
 			fill(this.col);
 			rect(this.xloc,this.yloc,x_dis,y_dis);
+			// circle(this.xloc,this.yloc,x_dis);
 		}
 		else {
 			stroke(this.out);
 			fill('white');
 			rect(this.xloc,this.yloc,x_dis,y_dis);
-			
+			// circle(this.xloc,this.yloc,x_dis);
+
 		}
 	}
-	
+
 	this.clicked = function(){
 		var d = dist(mouseX,mouseY,this.xcen,this.ycen);
 		if (d <= x_dis/2){
@@ -30,7 +32,7 @@ function cell(x,y){
 			this.show();
 		}
 	}
-	
+
 	this.flip = function(){
 		if (this.alive){
 			this.alive = false;
