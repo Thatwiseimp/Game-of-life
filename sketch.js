@@ -150,7 +150,7 @@ function mousePressed(){
 
 
 function setup() {
-  whi = color(240,240,255)
+  whi = color(240,240,255);
 	lte = color(0, 220, 250);
 	te = color(79, 170, 170);
 	orange = color(255,209,127);
