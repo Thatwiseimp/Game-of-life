@@ -7,7 +7,7 @@ function cell(x,y){
 	this.ycen = this.yloc + y_dis/2;
 	this.alive = false;
 	this.col = 'black';
-	this.out = 'white';
+	this.out = lte;
 
 	this.show = function(){
 		if (this.alive){
